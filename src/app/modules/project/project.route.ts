@@ -11,9 +11,9 @@ projectRouters.post(
   projectController.createProject,
 );
 
-// blogRouters.get('/', blogController.getAllBlogs);
+projectRouters.get('/', projectController.getAllProjects);
 
-// blogRouters.get('/:id', blogController.getSingleBlog);
+projectRouters.get('/:id', projectController.getSingleProject);
 
 // blogRouters.patch('/:id', auth(USER_ROLE.user), blogController.updateBlog);
 
