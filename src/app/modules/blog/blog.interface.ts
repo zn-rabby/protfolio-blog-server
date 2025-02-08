@@ -1,5 +1,5 @@
 export interface IBlog {
-  category: string; // Now only one category can be selected
+  category: string; 
   name: string;
   title: string;
   content: string;
