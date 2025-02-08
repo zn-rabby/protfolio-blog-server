@@ -1,5 +1,6 @@
 import QueryBuilder from '../../builder/QueryBuilder';
 import AppError from '../../errors/AppError';
+import User from '../user/user.model';
 import { projectSearchableFields } from './project.constant';
 import { IProject } from './project.interface';
 import Project from './project.model';
@@ -47,8 +48,36 @@ const getSingleProject = async (id: string) => {
   return user;
 };
 
+const updateProject = async (
+  id: string,
+  userEmail: string,
+  payload: Partial<IProject>,
+) => {
+  // check user is exists
+  const user = await User.isUserExists(userEmail);
+
+  if (!user) {
+    throw new AppError(403, 'User not found! You cannot update the blog.');
+  }
+
+  // check blog is exists
+  const blog = await Project.findById(id);
+
+  if (!blog) {
+    throw new AppError(404, 'Product not found! You cannot update it.');
+  }
+
+  const result = await Project.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  });
+
+  return result;
+};
+
 export const projectService = {
   createProject,
   getAllProject,
   getSingleProject,
+  updateProject,
 };
