@@ -75,9 +75,30 @@ const updateProject = async (
   return result;
 };
 
+const deleteProject = async (id: string, userEmail: string) => {
+  // check user is exists
+  const user = await User.isUserExists(userEmail);
+
+  if (!user) {
+    throw new AppError(403, 'User not found! You cannot delete the blog.');
+  }
+
+  // check blog is exists
+  const blog = await Project.findById(id);
+
+  if (!blog) {
+    throw new AppError(404, 'Project not found!');
+  }
+
+  const result = await Project.findByIdAndDelete(id, { isDeleted: true });
+
+  return result;
+};
+
 export const projectService = {
   createProject,
   getAllProject,
   getSingleProject,
   updateProject,
+  deleteProject,
 };

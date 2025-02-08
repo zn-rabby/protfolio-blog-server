@@ -23,11 +23,11 @@ projectRouters.patch(
   projectController.updateProject,
 );
 
-// blogRouters.delete(
-//   '/:id',
-//   auth(USER_ROLE.admin, USER_ROLE.user),
-//   blogController.deleteBlog,
-// );
+projectRouters.delete(
+  '/:id',
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  projectController.deleteProject,
+);
 
 export default projectRouters;
 
