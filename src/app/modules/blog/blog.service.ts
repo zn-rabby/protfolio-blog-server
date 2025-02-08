@@ -5,16 +5,16 @@ import { blogSearchableFields } from './blog.constant';
 import { IBlog } from './blog.interface';
 import Blog from './blog.model';
 
-const createBlog = async (payload: IBlog, userEmail: string) => {
-  const user = await User.isUserExists(userEmail);
+const createBlog = async (payload: IBlog) => {
+  // const user = await User.isUserExists(userEmail);
 
-  if (!user) {
-    throw new AppError(404, 'User not found!');
-  }
+  // if (!user) {
+  //   throw new AppError(404, 'User not found!');
+  // }
 
-  const userId = user?._id;
+  // const userId = user?._id;
 
-  const blogData = { ...payload, author: userId };
+  const blogData = { ...payload };
 
   const result = await Blog.create(blogData);
   return result;
