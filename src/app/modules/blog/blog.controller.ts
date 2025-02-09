@@ -42,9 +42,8 @@ const getSingleBlog = catchAsync(async (req, res) => {
 const updateBlog = catchAsync(async (req, res) => {
   const id = req.params.id;
   const updatedData = req.body;
-  const userEmail = req?.user?.email;
 
-  const result = await blogService.updateBlog(id, userEmail, updatedData);
+  const result = await blogService.updateBlog(id, updatedData);
 
   sendResponse(res, {
     statusCode: 200,
@@ -56,8 +55,7 @@ const updateBlog = catchAsync(async (req, res) => {
 
 const deleteBlog = catchAsync(async (req, res) => {
   const id = req.params.id;
-  const userEmail = req?.user?.email;
-  await blogService.deleteBlog(id, userEmail);
+  await blogService.deleteBlog(id);
 
   sendResponse(res, {
     statusCode: 200,

@@ -1,19 +1,10 @@
 import QueryBuilder from '../../builder/QueryBuilder';
 import AppError from '../../errors/AppError';
-import User from '../user/user.model';
 import { blogSearchableFields } from './blog.constant';
 import { IBlog } from './blog.interface';
 import Blog from './blog.model';
 
 const createBlog = async (payload: IBlog) => {
-  // const user = await User.isUserExists(userEmail);
-
-  // if (!user) {
-  //   throw new AppError(404, 'User not found!');
-  // }
-
-  // const userId = user?._id;
-
   const blogData = { ...payload };
 
   const result = await Blog.create(blogData);
@@ -48,18 +39,7 @@ const getSingleBlog = async (id: string) => {
   return user;
 };
 
-const updateBlog = async (
-  id: string,
-  userEmail: string,
-  payload: Partial<IBlog>,
-) => {
-  // check user is exists
-  const user = await User.isUserExists(userEmail);
-
-  if (!user) {
-    throw new AppError(403, 'User not found! You cannot update the blog.');
-  }
-
+const updateBlog = async (id: string, payload: Partial<IBlog>) => {
   // check blog is exists
   const blog = await Blog.findById(id);
 
@@ -75,14 +55,7 @@ const updateBlog = async (
   return result;
 };
 
-const deleteBlog = async (id: string, userEmail: string) => {
-  // check user is exists
-  const user = await User.isUserExists(userEmail);
-
-  if (!user) {
-    throw new AppError(403, 'User not found! You cannot delete the blog.');
-  }
-
+const deleteBlog = async (id: string) => {
   // check blog is exists
   const blog = await Blog.findById(id);
 
