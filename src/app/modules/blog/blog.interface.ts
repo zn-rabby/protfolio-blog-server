@@ -1,5 +1,5 @@
 export interface IBlog {
-  category: string; 
+  category: string;
   name: string;
   title: string;
   content: string;

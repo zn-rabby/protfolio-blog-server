@@ -1,6 +1,7 @@
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { projectService } from './project.service';
+
 const createProject = catchAsync(async (req, res) => {
   const result = await projectService.createProject(req.body);
 
@@ -39,9 +40,8 @@ const getSingleProject = catchAsync(async (req, res) => {
 const updateProject = catchAsync(async (req, res) => {
   const id = req.params.id;
   const updatedData = req.body;
-  const userEmail = req?.user?.email;
 
-  const result = await projectService.updateProject(id, userEmail, updatedData);
+  const result = await projectService.updateProject(id, updatedData);
 
   sendResponse(res, {
     statusCode: 200,
@@ -53,8 +53,7 @@ const updateProject = catchAsync(async (req, res) => {
 
 const deleteProject = catchAsync(async (req, res) => {
   const id = req.params.id;
-  const userEmail = req?.user?.email;
-  await projectService.deleteProject(id, userEmail);
+  await projectService.deleteProject(id);
 
   sendResponse(res, {
     statusCode: 200,

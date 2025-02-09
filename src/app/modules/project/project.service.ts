@@ -1,19 +1,10 @@
 import QueryBuilder from '../../builder/QueryBuilder';
 import AppError from '../../errors/AppError';
-import User from '../user/user.model';
 import { projectSearchableFields } from './project.constant';
 import { IProject } from './project.interface';
 import Project from './project.model';
 
 const createProject = async (payload: IProject) => {
-  //   const user = await User.isUserExists(userEmail);
-
-  //   if (!user) {
-  //     throw new AppError(404, 'User not found!');
-  //   }
-
-  //   const userId = user?._id;
-
   const projectData = { ...payload };
 
   const result = await Project.create(projectData);
@@ -48,18 +39,7 @@ const getSingleProject = async (id: string) => {
   return user;
 };
 
-const updateProject = async (
-  id: string,
-  userEmail: string,
-  payload: Partial<IProject>,
-) => {
-  // check user is exists
-  const user = await User.isUserExists(userEmail);
-
-  if (!user) {
-    throw new AppError(403, 'User not found! You cannot update the blog.');
-  }
-
+const updateProject = async (id: string, payload: Partial<IProject>) => {
   // check blog is exists
   const blog = await Project.findById(id);
 
@@ -75,14 +55,7 @@ const updateProject = async (
   return result;
 };
 
-const deleteProject = async (id: string, userEmail: string) => {
-  // check user is exists
-  const user = await User.isUserExists(userEmail);
-
-  if (!user) {
-    throw new AppError(403, 'User not found! You cannot delete the blog.');
-  }
-
+const deleteProject = async (id: string) => {
   // check blog is exists
   const blog = await Project.findById(id);
 
