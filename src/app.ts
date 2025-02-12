@@ -9,6 +9,13 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+    credentials: true,
+  }),
+);
+
 app.use('/api/v1', router);
 
 app.get('/', (req: Request, res: Response) => {
@@ -17,5 +24,4 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(globalErrorHandler);
 app.use(notFound);
-// console.log(process.cwd());
 export default app;

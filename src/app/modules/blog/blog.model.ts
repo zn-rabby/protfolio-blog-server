@@ -13,6 +13,10 @@ const blogSchema = new Schema<IBlog>(
       required: [true, 'Please provide title'],
       trim: true,
     },
+    image: {
+      type: String,
+      required: [true, 'Please provide project image'],
+    },
     content: {
       type: String,
       required: [true, 'Please provide content'],
