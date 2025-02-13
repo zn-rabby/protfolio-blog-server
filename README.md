@@ -1,111 +1,95 @@
-# Blog Application Server
+# Next.js Portfolio & Blog Website - Server
 
-## Overview
+## 🚀 Project Overview
 
-This project provides the backend for a blogging platform where users can write, update, and delete blogs. It includes secure authentication, role-based access control, and a public API for viewing blogs with search, sort, and filter functionalities.
+This is the backend server for the **Next.js Portfolio & Blog Website**. It provides RESTful APIs to manage blog posts, projects, and contact messages. Built with **Node.js, Express, and MongoDB**, this server ensures smooth data management for the portfolio website.
 
----
+## 🌟 Features
 
-## Features
+- **Blog Management**: Create, Read, Update, and Delete blog posts.
+- **Project Management**: Handle CRUD operations for portfolio projects.
+- **Contact Messages**: Store and manage messages submitted via the contact form.
+- **User Authentication**: Secure login using **NextAuth.js**.
+- **API Routes**: RESTful API endpoints for seamless integration with the frontend.
+- **Database**: Uses MongoDB for efficient data storage and retrieval.
 
-### User Roles
+## 🔗 Live Links
 
-- **Admin**:
-  - Manually created in the database with predefined credentials.
-  - Can delete any blog.
-  - Can block any user by updating a property `isBlocked`.
-  - Cannot update any blog.
-- **User**:
-  - Can register and log in.
-  - Can create, update, and delete their own blogs.
-  - Cannot perform admin actions.
+- **Live Server**: [https://nextjs-blog-protfolio-server.vercel.app/](https://nextjs-blog-protfolio-server.vercel.app/)
+- **Frontend (Client)**: [https://rabby-protfolio.vercel.app/](https://rabby-protfolio.vercel.app/)
+- **Client Repository**: [GitHub - Portfolio Client](https://github.com/rabby-web/protfolio-client)
 
-### Authentication & Authorization
+## 🛠️ Tech Stack
 
-- Secure user authentication using JWT.
-- Role-based access control for Admin and User roles.
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Authentication**: NextAuth.js (Social login)
+- **Deployment**: Vercel
 
-### Blog API
+## 📌 API Endpoints
 
-- Public API for fetching blogs:
-  - Includes search, sort, and filter functionalities.
-  - Provides blog title, content, author details, and more.
+### 🔹 Blogs
 
----
+- `GET /api/v1/blogs` - Fetch all blogs
+- `GET /api/v1/blogs/:id` - Fetch a single blog post
+- `POST /api/v1/blogs` - Create a new blog post (Authenticated)
+- `PUT /api/v1/blogs/:id` - Update a blog post (Authenticated)
+- `DELETE /api/v1/blogs/:id` - Delete a blog post (Authenticated)
 
-## Technologies Used
+### 🔹 Projects
 
-- **TypeScript**
-- **Node.js**
-- **Express.js**
-- **MongoDB with Mongoose**
+- `GET /api/v1/projects` - Fetch all projects
+- `GET /api/v1/projects/:id` - Fetch a single project
+- `POST /api/v1/projects` - Add a new project (Authenticated)
+- `PUT /api/v1/projects/:id` - Update project details (Authenticated)
+- `DELETE /v1/api/projects/:id` - Remove a project (Authenticated)
 
----
+### 🔹 Contact Messages
 
-## Installation
+- `POST /api/v1/messages` - Submit a new contact message
+- `GET /api/v1/messages` - View all messages (Authenticated)
 
-### Steps
+## 🔧 Setup & Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/rabby-web/blog-application.git
+   ```sh
+   git clone https://github.com/rabby-web/protfolio-server.git
+   cd protfolio-server
    ```
 
-2. Install dependencies:
-   ```bash
+2. **Install dependencies:**
+
+   ```sh
    npm install
    ```
-3. Create an `.env` file in the root directory and configure the environment variables:
+
+3. **Create a `.env` file and configure the environment variables:**
+
    ```env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/blog-platform
-   JWT_SECRET=jwt_access_secret
+   MONGO_URI=your_mongodb_connection_string
+   NEXTAUTH_SECRET=your_next_auth_secret
+   JWT_SECRET=your_jwt_secret
    ```
-4. Start the development server:
-   ```bash
+
+4. **Start the development server:**
+
+   ```sh
    npm run start:dev
    ```
-5. Access the API at Vercel `https://blog-application-seven-xi.vercel.app/`.
-6. Access the API at Localhost `http://localhost:5000/`.
+
+5. **Deploy on Vercel:**
+   ```sh
+   vercel
+   ```
+
+## 🎯 Future Improvements
+
+- Implement role-based access control for admins.
+- Add GraphQL support for efficient data fetching.
+- Enhance API security with rate limiting and validation.
+- Implement caching for faster API responses.
 
 ---
 
-## API Endpoints
-
-### 1. Authentication
-
-- **POST** `/api/auth/register`
-- **POST** `/api/auth/login`
-
-### 2. Blog Management
-
-- **POST** `/api/blogs`
-- **PATCH** `/api/blogs/:id`
-- **DELETE** `/api/blogs/:id`
-- **GET** `/api/blogs`
-
-### 3. Admin Actions
-
-- **PATCH** `/api/admin/users/:userId/block`
-- **DELETE** `/api/admin/blogs/:id`
-
----
-
-## Error Handling
-
-A consistent error response format is used across all API endpoints:
-
-```json
-{
-  "success": false,
-  "message": "Error message",
-  "statusCode": 400,
-  "error": { "details": "Additional details" },
-  "stack": "Stack trace"
-}
-```
-
-## Server live link
-
-[Blogs Website](https://blog-application-seven-xi.vercel.app/)
+🚀 **Happy Coding!** 🎨✨
