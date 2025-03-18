@@ -23,8 +23,10 @@ const createProjectValidationSchema = z.object({
       .min(10, 'Content must be at least 10 characters long'),
 
     image: z
-      .string({ required_error: 'Project image is required!' })
-      .url('Invalid image URL format'),
+      .array(z.string().url('Each image must be a valid URL'), {
+        required_error: 'At least one image is required',
+      })
+      .nonempty('At least one image is required'),
 
     thumbnail: z
       .string({ required_error: 'Project thumbnail is required!' })

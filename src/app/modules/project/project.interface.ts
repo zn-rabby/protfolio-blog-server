@@ -4,7 +4,7 @@ export interface IProject {
   title: string;
   description: string;
   content: string;
-  image: string;
+  image: string[];
   thumbnail: string;
   technologies: string[];
   keyFeatures: string[];

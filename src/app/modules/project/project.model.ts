@@ -9,7 +9,7 @@ const ProjectSchema = new Schema<IProject>(
     title: { type: String, required: true },
     description: { type: String, required: true },
     content: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: [String], required: true }, // array of image URLs
     thumbnail: { type: String, required: true },
     technologies: { type: [String], required: true },
     keyFeatures: { type: [String], required: true },
