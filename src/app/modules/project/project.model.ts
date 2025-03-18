@@ -1,57 +1,49 @@
-import { model, Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { IProject } from './project.interface';
 
-const projectSchema = new Schema<IProject>(
+// Mongoose Schema
+const ProjectSchema = new Schema<IProject>(
   {
-    name: {
+    name: { type: String, required: true },
+    category: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    content: { type: String, required: true },
+    image: { type: String, required: true },
+    thumbnail: { type: String, required: true },
+    technologies: { type: [String], required: true },
+    keyFeatures: { type: [String], required: true },
+    projectRole: { type: String, required: true },
+    status: {
       type: String,
-      required: [true, 'Please provide project name'],
-      trim: true,
+      enum: ['ongoing', 'completed', 'maintenance'],
+      required: true,
     },
-    category: {
-      type: String,
-      required: [true, 'Please provide project category'],
+    liveDemoLink: { type: String, required: true },
+    repoLinkClient: { type: String },
+    repoLinkServer: { type: String },
+    apiDocumentation: { type: String },
+    projectGoals: { type: String },
+    challengesFaced: { type: String },
+    solution: { type: String },
+    futureImprovements: { type: String },
+    securityConsiderations: { type: String },
+    projectTimeline: { type: String },
+    contributors: { type: [String] },
+    deploymentStack: { type: String },
+    testCredentials: {
+      username: { type: String },
+      password: { type: String },
     },
-    title: {
-      type: String,
-      required: [true, 'Please provide project title'],
-      trim: true,
-    },
-    content: {
-      type: String,
-      required: [true, 'Please provide project content'],
-    },
-    image: {
-      type: String,
-      required: [true, 'Please provide project image'],
-    },
-    technologies: {
-      type: [String], // An array of strings for technologies used
-      required: [true, 'Please provide technologies used'],
-    },
-    liveDemoLink: {
-      type: String,
-      required: [true, 'Please live DemoLink'],
-    },
-    repoLinkClient: {
-      type: String,
-      required: [true, 'Please repo Link Client'],
-    },
-    repoLinkServer: {
-      type: String,
-      required: [true, 'Please repo Link Server'],
-    },
-
-    isPublished: {
-      type: Boolean,
-      default: true,
-    },
+    tags: { type: [String] },
+    isFeatured: { type: Boolean, default: false },
+    isPublished: { type: Boolean, required: true },
   },
   {
-    timestamps: true, // Automatically adds createdAt & updatedAt fields
+    timestamps: true, // Auto add createdAt & updatedAt
   },
 );
 
-const Project = model<IProject>('Project', projectSchema);
-
-export default Project;
+// Export Model
+const ProjectModel = model<IProject>('Project', ProjectSchema);
+export default ProjectModel;

@@ -8,7 +8,7 @@ const createProject = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 201,
     success: true,
-    message: 'Blog created successfully',
+    message: 'Project created successfully',
     data: result,
   });
 });
