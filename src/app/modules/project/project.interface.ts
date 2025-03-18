@@ -1,5 +1,4 @@
 export interface IProject {
-  id: string; // Unique Project ID
   name: string;
   category: string;
   title: string;

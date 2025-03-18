@@ -3,31 +3,43 @@ import { IBlog } from './blog.interface';
 
 const blogSchema = new Schema<IBlog>(
   {
-    name: {
+    category: {
       type: String,
-      required: [true, 'Please provide name'],
+      required: [true, 'Please provide a category for the blog'],
       trim: true,
     },
-    title: {
+    name: {
       type: String,
-      required: [true, 'Please provide title'],
+      required: [true, 'Please provide the name of the blog'],
       trim: true,
     },
     image: {
       type: String,
-      required: [true, 'Please provide project image'],
+      required: [true, 'Please provide an image for the blog'],
+    },
+    title: {
+      type: String,
+      required: [true, 'Please provide a title for the blog'],
+      trim: true,
     },
     content: {
       type: String,
-      required: [true, 'Please provide content'],
+      required: [true, 'Please provide content for the blog'],
     },
-    category: {
-      type: String, // Single category selection
-      required: [true, 'Please select a category'],
+    introduction: {
+      type: String,
+      required: [true, 'Please provide an introduction for the blog'],
+    },
+    tags: {
+      type: [String], // Array of tags (optional)
     },
     isPublished: {
       type: Boolean,
       default: true,
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
     views: {
       type: Number,
@@ -36,6 +48,13 @@ const blogSchema = new Schema<IBlog>(
     likes: {
       type: Number,
       default: 0,
+    },
+    thumbnail: {
+      type: String, // Optional thumbnail image
+    },
+    authorName: {
+      type: String,
+      required: [true, "Please provide the author's name"],
     },
   },
   {
