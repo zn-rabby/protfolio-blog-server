@@ -18,10 +18,6 @@ const createProjectValidationSchema = z.object({
       .string({ required_error: 'Project description is required!' })
       .min(10, 'Description must be at least 10 characters long'),
 
-    content: z
-      .string({ required_error: 'Project content is required!' })
-      .min(10, 'Content must be at least 10 characters long'),
-
     image: z
       .array(z.string().url('Each image must be a valid URL'), {
         required_error: 'At least one image is required',
@@ -40,10 +36,6 @@ const createProjectValidationSchema = z.object({
       .array(z.string(), { required_error: 'Key features are required!' })
       .min(1, 'At least one key feature must be provided'),
 
-    projectRole: z
-      .string({ required_error: 'Project role is required!' })
-      .min(3, 'Project role must be at least 3 characters long'),
-
     status: z.enum(['ongoing', 'completed', 'maintenance'], {
       required_error: 'Status is required!',
     }),
@@ -60,11 +52,6 @@ const createProjectValidationSchema = z.object({
     repoLinkServer: z
       .string({ required_error: 'Server-side repo link is required!' })
       .url('Invalid server-side repo link URL format')
-      .optional(),
-
-    apiDocumentation: z
-      .string()
-      .url('Invalid API documentation URL format')
       .optional(),
 
     projectGoals: z.string().optional(),

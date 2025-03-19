@@ -8,12 +8,10 @@ const ProjectSchema = new Schema<IProject>(
     category: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
-    content: { type: String, required: true },
     image: { type: [String], required: true }, // array of image URLs
     thumbnail: { type: String, required: true },
     technologies: { type: [String], required: true },
     keyFeatures: { type: [String], required: true },
-    projectRole: { type: String, required: true },
     status: {
       type: String,
       enum: ['ongoing', 'completed', 'maintenance'],
@@ -22,7 +20,6 @@ const ProjectSchema = new Schema<IProject>(
     liveDemoLink: { type: String, required: true },
     repoLinkClient: { type: String },
     repoLinkServer: { type: String },
-    apiDocumentation: { type: String },
     projectGoals: { type: String },
     challengesFaced: { type: String },
     solution: { type: String },

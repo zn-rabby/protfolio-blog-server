@@ -3,19 +3,16 @@ export interface IProject {
   category: string;
   title: string;
   description: string;
-  content: string;
   image: string[];
   thumbnail: string;
   technologies: string[];
   keyFeatures: string[];
-  projectRole: string;
   status: 'ongoing' | 'completed' | 'maintenance';
 
   // Links
   liveDemoLink: string;
   repoLinkClient?: string;
   repoLinkServer?: string;
-  apiDocumentation?: string;
 
   // Additional Info (Optional)
   projectGoals?: string;
@@ -33,7 +30,7 @@ export interface IProject {
 
   // Meta Data
   isFeatured?: boolean;
-  isPublished: boolean;
+  isPublished?: boolean;
   createdAt: Date;
   updatedAt?: Date;
 }
