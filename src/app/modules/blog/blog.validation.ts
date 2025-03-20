@@ -39,8 +39,7 @@ const createBlogValidationSchema = z.object({
 
     likes: z.number().optional().default(0), // Optional field with a default value of 0
 
-    thumbnail: z.string().optional(), // Optional but if provided, it must be a valid URL
-
+ 
     authorName: z
       .string({ required_error: 'Author name is required!' })
       .min(2, 'Author name must be at least 2 characters long'),

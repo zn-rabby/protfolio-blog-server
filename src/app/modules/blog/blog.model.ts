@@ -49,9 +49,7 @@ const blogSchema = new Schema<IBlog>(
       type: Number,
       default: 0,
     },
-    thumbnail: {
-      type: String, // Optional thumbnail image
-    },
+  
     authorName: {
       type: String,
       required: [true, "Please provide the author's name"],

@@ -14,7 +14,6 @@ export interface IBlog {
   views?: number; // View count of the blog (optional)
   likes?: number; // Like count for the blog (optional)
 
-  thumbnail?: string; // Thumbnail image for the blog (optional)
 
   authorName: string; // Author of the blog post (required)
 
