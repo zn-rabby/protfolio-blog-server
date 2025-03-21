@@ -24,10 +24,7 @@ const createProjectValidationSchema = z.object({
       })
       .nonempty('At least one image is required'),
 
-    thumbnail: z
-      .string({ required_error: 'Project thumbnail is required!' })
-      .url('Invalid thumbnail URL format'),
-
+   
     technologies: z
       .array(z.string(), { required_error: 'Technologies are required!' })
       .min(1, 'At least one technology must be provided'),
@@ -56,32 +53,7 @@ const createProjectValidationSchema = z.object({
 
     projectGoals: z.string().optional(),
 
-    challengesFaced: z.string().optional(),
-
-    solution: z.string().optional(),
-
-    futureImprovements: z.string().optional(),
-
-    securityConsiderations: z.string().optional(),
-
-    projectTimeline: z.string().optional(),
-
-    contributors: z.array(z.string()).optional(),
-
-    deploymentStack: z.string().optional(),
-
-    testCredentials: z
-      .object({
-        username: z.string(),
-        password: z.string(),
-      })
-      .optional(),
-
-    tags: z.array(z.string()).optional(),
-
-    isFeatured: z.boolean().default(false),
-
-    isPublished: z.boolean().default(true),
+    
   }),
 });
 
