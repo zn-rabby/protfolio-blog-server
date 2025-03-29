@@ -12,4 +12,5 @@ export interface IProject {
   repoLinkClient?: string;
   repoLinkServer?: string;
   isPublished: boolean;
+  
 }

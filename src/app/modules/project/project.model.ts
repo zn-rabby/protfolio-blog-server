@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { IProject } from './project.interface';
 
+// fixt this
+
 const ProjectSchema = new Schema<IProject>(
   {
     slug: { type: String, required: true, unique: true },
