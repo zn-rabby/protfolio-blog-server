@@ -1,29 +1,27 @@
 import { Schema, model } from 'mongoose';
 import { IProject } from './project.interface';
 
-// Mongoose Schema
 const ProjectSchema = new Schema<IProject>(
   {
-    name: { type: String, required: true },
-    category: { type: String, required: true },
+    slug: { type: String, required: true, unique: true },
     title: { type: String, required: true },
+    category: { type: String, required: true },
     description: { type: String, required: true },
-    image: { type: [String], required: true }, 
+    image: { type: [String], required: true },
     technologies: { type: [String], required: true },
-    keyFeatures: { type: [String], required: true },
+    features: { type: [String] },
+    projectGoals: { type: String },
     status: {
       type: String,
       enum: ['ongoing', 'completed', 'maintenance'],
-      required: true,
+      default: 'ongoing',
     },
     liveDemoLink: { type: String, required: true },
     repoLinkClient: { type: String },
     repoLinkServer: { type: String },
-    projectGoals: { type: String },
+    isPublished: { type: Boolean, default: false },
   },
-  {
-    timestamps: true, // Auto add createdAt & updatedAt
-  },
+  { timestamps: true },
 );
 
 // Export Model

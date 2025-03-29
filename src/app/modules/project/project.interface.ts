@@ -1,19 +1,15 @@
 export interface IProject {
-  name: string;
-  category: string;
+  slug: string;
   title: string;
+  category: string;
   description: string;
   image: string[];
   technologies: string[];
-  keyFeatures: string[];
-  status: 'ongoing' | 'completed' | 'maintenance';
-
-  // Links
-  liveDemoLink: string;
-  repoLinkClient: string;
-  repoLinkServer: string;
-
-  // Additional Info (Optional)
+  features?: string[];
   projectGoals?: string;
-  
+  status: 'ongoing' | 'completed' | 'maintenance';
+  liveDemoLink: string;
+  repoLinkClient?: string;
+  repoLinkServer?: string;
+  isPublished: boolean;
 }

@@ -28,5 +28,3 @@ blogRouters.delete(
 );
 
 export default blogRouters;
-
-// /dashboard/:path*
