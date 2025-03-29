@@ -8,7 +8,7 @@ const blogSchema = new Schema<IBlog>(
       required: [true, 'Please provide a category for the blog'],
       trim: true,
     },
-  
+
     image: {
       type: String,
       required: [true, 'Please provide an image for the blog'],
@@ -29,7 +29,7 @@ const blogSchema = new Schema<IBlog>(
     tags: {
       type: [String], // Array of tags (optional)
     },
-   
+
     isDeleted: {
       type: Boolean,
       default: false,
