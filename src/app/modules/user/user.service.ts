@@ -25,13 +25,12 @@ const login = async (payload: { email: string; password: string }) => {
     throw new AppError(404, 'User is not found!');
   }
 
-  const isBlocked = user.isBlocked; // Assuming isBlocked is boolean
+  const isBlocked = user.isBlocked;
 
   if (isBlocked) {
     throw new AppError(403, 'Your account has been blocked.');
   }
 
-  //checking if the password is correct
   const isPasswordMatched = await bcrypt.compare(
     payload?.password,
     user?.password,
@@ -41,20 +40,14 @@ const login = async (payload: { email: string; password: string }) => {
     throw new AppError(StatusCodes.UNAUTHORIZED, 'Invalid credentials');
   }
 
-  //create token and sent to the  client
   const jwtPayload = {
     email: user?.email,
     role: user?.role,
   };
 
-  // const token = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
-  //   expiresIn: '30d',
-  // });
   const token = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
     expiresIn: '30d',
   });
-
-  // jwt.verify(token, config.jwt_access_secret as string); // Ensure this matches
 
   return { token, user };
 };
