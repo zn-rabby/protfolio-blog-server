@@ -21,10 +21,6 @@ blogRouters.patch(
   blogController.updateBlog,
 );
 
-blogRouters.delete(
-  '/:id',
-
-  blogController.deleteBlog,
-);
+blogRouters.delete('/:id', blogController.deleteBlog);
 
 export default blogRouters;

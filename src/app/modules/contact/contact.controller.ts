@@ -28,7 +28,20 @@ const getAllContacts = catchAsync(async (req, res) => {
   });
 });
 
+const deleteContact = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  await contactService.deleteContact(id);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Contact deleted successfully',
+    data: {},
+  });
+});
+
 export const contactController = {
   createContact,
   getAllContacts,
+  deleteContact,
 };

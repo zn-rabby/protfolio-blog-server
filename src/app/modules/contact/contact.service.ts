@@ -33,7 +33,21 @@ const getAllContacts = async (query: Record<string, unknown>) => {
   };
 };
 
+const deleteContact = async (id: string) => {
+  // check blog is exists
+  const blog = await Contact.findById(id);
+
+  if (!blog) {
+    throw new AppError(404, 'Blog not found!');
+  }
+
+  const result = await Contact.findByIdAndDelete(id, { isDeleted: true });
+
+  return result;
+};
+
 export const contactService = {
   createContact,
   getAllContacts,
+  deleteContact,
 };

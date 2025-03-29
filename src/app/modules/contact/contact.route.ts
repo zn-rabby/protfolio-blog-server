@@ -13,4 +13,10 @@ contactRouters.post(
 
 contactRouters.get('/', contactController.getAllContacts);
 
+contactRouters.delete(
+  '/:id',
+
+  contactController.deleteContact,
+);
+
 export default contactRouters;
