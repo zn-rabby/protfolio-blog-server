@@ -15,7 +15,11 @@ projectRouters.get('/', projectController.getAllProjects);
 
 projectRouters.get('/:id', projectController.getSingleProject);
 
-projectRouters.patch('/:id', projectController.updateProject);
+projectRouters.patch(
+  '/:id',
+  validateRequest(ProjectValidation.updateProjectValidationSchema),
+  projectController.updateProject,
+);
 
 projectRouters.delete('/:id', projectController.deleteProject);
 
