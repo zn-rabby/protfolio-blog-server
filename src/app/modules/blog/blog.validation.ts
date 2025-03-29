@@ -6,10 +6,6 @@ const createBlogValidationSchema = z.object({
       .string({ required_error: 'Category is required!' })
       .min(3, 'Category must be at least 3 characters long'),
 
-    name: z
-      .string({ required_error: 'Name is required!' })
-      .min(2, 'Name must be at least 2 characters long'),
-
     image: z
       .string({ required_error: 'Image URL is required!' })
       .url('Invalid image URL format'),
@@ -27,25 +23,55 @@ const createBlogValidationSchema = z.object({
       .min(10, 'Introduction must be at least 10 characters long'),
 
     tags: z
-      .array(z.string()) // First, ensure it's an array
-      .min(1, 'At least one tag should be provided') // Now you can apply .min()
-      .optional(), // Make it optional but still enforce the min if provided
+      .array(z.string())
+      .min(1, 'At least one tag should be provided')
+      .optional(),
+    sPublished: z.boolean().default(true),
 
-    isPublished: z.boolean().default(true), // Default to true if not provided
-
-    isDeleted: z.boolean().default(false), // Default to false
-
-    views: z.number().optional().default(0), // Optional field with a default value of 0
-
-    likes: z.number().optional().default(0), // Optional field with a default value of 0
-
- 
-    authorName: z
+    author: z
       .string({ required_error: 'Author name is required!' })
       .min(2, 'Author name must be at least 2 characters long'),
+  }),
+});
+const updateBlogValidationSchema = z.object({
+  body: z.object({
+    category: z
+      .string()
+      .min(3, 'Category must be at least 3 characters long')
+      .optional(),
+
+    image: z.string().url('Invalid image URL format').optional(),
+
+    title: z
+      .string()
+      .min(5, 'Title must be at least 5 characters long')
+      .optional(),
+
+    content: z
+      .string()
+      .min(10, 'Content must be at least 10 characters long')
+      .optional(),
+
+    introduction: z
+      .string()
+      .min(10, 'Introduction must be at least 10 characters long')
+      .optional(),
+
+    tags: z
+      .array(z.string())
+      .min(1, 'At least one tag should be provided')
+      .optional(),
+
+    sPublished: z.boolean().default(true).optional(),
+
+    author: z
+      .string()
+      .min(2, 'Author name must be at least 2 characters long')
+      .optional(),
   }),
 });
 
 export const BlogValidation = {
   createBlogValidationSchema,
+  updateBlogValidationSchema,
 };

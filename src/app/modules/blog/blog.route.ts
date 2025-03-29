@@ -15,7 +15,11 @@ blogRouters.get('/', blogController.getAllBlogs);
 
 blogRouters.get('/:id', blogController.getSingleBlog);
 
-blogRouters.patch('/:id', blogController.updateBlog);
+blogRouters.patch(
+  '/:id',
+  validateRequest(BlogValidation.updateBlogValidationSchema),
+  blogController.updateBlog,
+);
 
 blogRouters.delete(
   '/:id',

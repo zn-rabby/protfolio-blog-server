@@ -8,11 +8,7 @@ const blogSchema = new Schema<IBlog>(
       required: [true, 'Please provide a category for the blog'],
       trim: true,
     },
-    name: {
-      type: String,
-      required: [true, 'Please provide the name of the blog'],
-      trim: true,
-    },
+  
     image: {
       type: String,
       required: [true, 'Please provide an image for the blog'],
@@ -33,24 +29,12 @@ const blogSchema = new Schema<IBlog>(
     tags: {
       type: [String], // Array of tags (optional)
     },
-    isPublished: {
-      type: Boolean,
-      default: true,
-    },
+   
     isDeleted: {
       type: Boolean,
       default: false,
     },
-    views: {
-      type: Number,
-      default: 0,
-    },
-    likes: {
-      type: Number,
-      default: 0,
-    },
-  
-    authorName: {
+    author: {
       type: String,
       required: [true, "Please provide the author's name"],
     },
